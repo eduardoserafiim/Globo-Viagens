@@ -2,7 +2,7 @@ Options -MultiViews
 RewriteEngine On
 
 RewriteCond %{THE_REQUEST} \s/+[^\s?]*\.php(?:[\s?]|$) [NC]
-RewriteRule ^(?:view/)?([A-Za-z0-9_-]+)\.php$ view/$1 [R=301,L,NE]
+RewriteRule ^(?!(?:action|media)\.php$)(?:view/)?([A-Za-z0-9_-]+)\.php$ view/$1 [R=301,L,NE]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -19,7 +19,7 @@ $erro = $_GET['erro'] ?? null;
             <section class="video-admin-layout">
                 <div class="panel video-form-panel">
                     <div class="panel-heading"><div><p class="eyebrow">Novo relato</p><h2>Adicionar vídeo</h2></div><i class="fa-solid fa-video panel-heading-icon"></i></div>
-                    <form class="dashboard-form" method="post" action="../../private_html/controllers/videoController.php" enctype="multipart/form-data">
+                    <form class="dashboard-form" method="post" action="/action.php?acao=videos" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                         <label>Titulo do relato<input type="text" name="titulo" placeholder="Nossa viagem foi inesquecível" required></label>
                         <label>Nome da pessoa<input type="text" name="autor" placeholder="Mariana e Rafael" required></label>
@@ -41,7 +41,7 @@ $erro = $_GET['erro'] ?? null;
                             <article class="video-admin-row">
                                 <div class="video-admin-thumb"><i class="fa-solid fa-play"></i></div>
                                 <div><span class="card-kicker"><?= htmlspecialchars($video['destino'] ?: 'Relato de viagem') ?></span><h3><?= htmlspecialchars($video['titulo']) ?></h3><p><?= htmlspecialchars($video['autor']) ?></p></div>
-                                <form method="post" action="../../private_html/controllers/videoController.php"><input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>"><input type="hidden" name="acao" value="excluir"><input type="hidden" name="id" value="<?= (int) $video['id'] ?>"><button class="icon-action" type="submit" title="Excluir relato" aria-label="Excluir relato"><i class="fa-solid fa-trash"></i></button></form>
+                                <form method="post" action="/action.php?acao=videos"><input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>"><input type="hidden" name="acao" value="excluir"><input type="hidden" name="id" value="<?= (int) $video['id'] ?>"><button class="icon-action" type="submit" title="Excluir relato" aria-label="Excluir relato"><i class="fa-solid fa-trash"></i></button></form>
                             </article>
                         <?php endforeach; ?>
                     </div>

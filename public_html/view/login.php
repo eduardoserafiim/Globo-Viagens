@@ -15,7 +15,7 @@ if (autenticado()) {
             <p class="eyebrow">Acesso interno</p>
             <h1>Bem-vindo<br>de volta.</h1>
             <p>Entre para acompanhar o movimento da Globo Viagens.</p>
-            <form method="post" action="../../private_html/controllers/loginController.php">
+            <form method="post" action="/action.php?acao=login">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                 <label for="email">E-mail</label>
                 <input id="email" name="email" type="email" autocomplete="email" required>

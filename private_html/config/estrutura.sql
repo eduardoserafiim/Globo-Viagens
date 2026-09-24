@@ -59,3 +59,6 @@ CREATE TABLE IF NOT EXISTS videos_relatos (
     url VARCHAR(255) NOT NULL,
     criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO usuarios (nome, email, senha_hash, foto, ativo)
+VALUES ('Sistemas S', 'contato@sistemass.app.br','$2a$12$xMGMC.ZjBU.yV5a7o9KEyeJ/VRdnCKu4bG1yLfeQ0QyAam0n2cs.W','images/Logo.png', 1);

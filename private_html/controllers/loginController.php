@@ -4,7 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../models/loginModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !validar_csrf($_POST['csrf_token'] ?? null)) {
-    header('Location: /Globo-Viagens/public_html/view/login');
+    header('Location: /view/login');
     exit;
 }
 
@@ -19,5 +19,5 @@ if (($usuario = buscar_usuario_por_email($email)) && password_verify($senha, (st
     $_SESSION['admin_foto'] = (string) ($usuario['foto'] ?: DEFAULT_ADMIN_PHOTO);
 }
 
-header('Location: ../../public_html/view/dashboard');
+header('Location: /view/dashboard');
 exit;

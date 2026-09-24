@@ -157,7 +157,7 @@ foreach ($estatisticas['por_mes'] as $linha) {
                         </div>
                     </div>
 
-                    <form class="dashboard-form" method="post" action="../../private_html/controllers/destinoController.php" enctype="multipart/form-data">
+                        <form class="dashboard-form" method="post" action="/action.php?acao=destino" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
                         <label>Nome

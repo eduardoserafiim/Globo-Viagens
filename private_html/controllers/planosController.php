@@ -5,7 +5,7 @@ require_once __DIR__ . '/../models/planosModel.php';
 exigir_autenticacao();
 
 $redirecionar = static function (string $query = ''): never {
-    header('Location: /Globo-Viagens/public_html/view/planos' . $query);
+    header('Location: /view/planos' . $query);
     exit;
 };
 

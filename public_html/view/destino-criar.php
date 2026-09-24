@@ -15,7 +15,7 @@ $erroCadastro = $_GET['erro'] ?? null;
 
             <?php if ($erroCadastro === 'csrf'): ?><p class="form-feedback form-feedback-error"><i class="fa-solid fa-circle-exclamation"></i> Sua sessão expirou. Recarregue a página e tente novamente.</p><?php elseif ($erroCadastro === 'validacao'): ?><p class="form-feedback form-feedback-error"><i class="fa-solid fa-circle-exclamation"></i> Não foi possível criar o destino. Revise os campos obrigatórios e selecione pelo menos uma imagem válida.</p><?php endif; ?>
 
-            <form class="destination-creation-layout" id="destinationForm" method="post" action="../../private_html/controllers/destinoController.php" enctype="multipart/form-data">
+            <form class="destination-creation-layout" id="destinationForm" method="post" action="/action.php?acao=destino" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                 <section class="destination-editor panel">
                     <div class="editor-section-heading"><span class="editor-step">01</span><div><p class="eyebrow">Identidade</p><h2>Apresente o destino</h2></div></div>

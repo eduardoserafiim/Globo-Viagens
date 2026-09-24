@@ -69,6 +69,10 @@ const DEFAULT_ADMIN_PHOTO = 'images/Logo.png';
 
 function asset(string $path): string
 {
+    if ($path === 'javascript/menuMobile.js') {
+        return '../media.php?file=javascript/menuMobile.js&v=2';
+    }
+
     if (str_starts_with($path, 'upload/images/') || str_starts_with($path, 'upload/videos/')) {
         return '../media.php?file=' . rawurlencode(ltrim($path, '/'));
     }
@@ -120,7 +124,7 @@ function atualizar_perfil_admin(array $dados): void
 function exigir_autenticacao(): void
 {
     if (!autenticado()) {
-        header('Location: /Globo-Viagens/public_html/view/login');
+        header('Location: /view/login');
         exit;
     }
 }

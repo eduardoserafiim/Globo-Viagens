@@ -14,7 +14,7 @@ $planos = [
 $whatsapp = 'https://api.whatsapp.com/send?phone=67992027942&text=Ola%2C%20quero%20planejar%20uma%20viagem!';
 $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
 ?>
-<?php  getHeader('Globo Viagens', 'Hospedagens e destinos para criar viagens do seu jeito.'); ?>
+<?php  getHeader('Início', 'Hospedagens e destinos para criar viagens do seu jeito.'); ?>
 <body>
     <header class="site-header">
         <div class="shell header-inner">
@@ -236,7 +236,7 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
         <span class="whatsapp-icone" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
         <span class="whatsapp-texto">Fale conosco</span>
     </a>
-    <script src="../../private_html/javascript/menuMobile.js"></script>
+    <script src="<?= asset('javascript/menuMobile.js') ?>"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.destination-card').forEach((card) => {

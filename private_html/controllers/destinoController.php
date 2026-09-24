@@ -5,7 +5,7 @@ require_once __DIR__ . '/../models/destinosModel.php';
 exigir_autenticacao();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !validar_csrf($_POST['csrf_token'] ?? null)) {
-    header('Location: /Globo-Viagens/public_html/view/destino-criar?erro=csrf');
+    header('Location: /view/destino-criar?erro=csrf');
     exit;
 }
 
@@ -13,7 +13,7 @@ if (($_POST['acao'] ?? '') === 'alterar_status') {
     $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
     $status = (string) ($_POST['status'] ?? '');
     atualizar_status_destino((int) $id, $status);
-    header('Location: /Globo-Viagens/public_html/view/destinos?status=atualizado');
+    header('Location: /view/destinos?status=atualizado');
     exit;
 }
 
@@ -69,7 +69,7 @@ if (($_POST['acao'] ?? '') === 'editar') {
     $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
     $destinoAtual = $id ? buscar_destino_por_id((int) $id) : null;
     if (!$destinoAtual) {
-        header('Location: /Globo-Viagens/public_html/view/destinos?erro=destino');
+        header('Location: /view/destinos?erro=destino');
         exit;
     }
 
@@ -87,7 +87,7 @@ if (($_POST['acao'] ?? '') === 'editar') {
     $galeria = $imagens !== [] ? implode(',', array_slice($imagens, 1)) : (string) $destinoAtual['galeria'];
 
     if ($nome === '' || strlen($estado) !== 2 || $tipo === '' || $resumo === '' || $descricao === '' || $localizacao === '' || !in_array($status, ['ativo', 'em_uso', 'inativo'], true) || $preco === false || $preco < 0) {
-        header('Location: /Globo-Viagens/public_html/view/destino-editar?id=' . (int) $id . '&erro=validacao');
+        header('Location: /view/destino-editar?id=' . (int) $id . '&erro=validacao');
         exit;
     }
 
@@ -105,7 +105,7 @@ if (($_POST['acao'] ?? '') === 'editar') {
         'status' => $status,
         'ativo' => $status === 'ativo' ? 1 : 0,
     ]);
-    header('Location: /Globo-Viagens/public_html/view/destinos?status=atualizado');
+    header('Location: /view/destinos?status=atualizado');
     exit;
 }
 
@@ -139,7 +139,7 @@ if (
     $preco < 0 ||
     !preg_match('/^[a-zA-Z0-9_\/-]+\.(jpg|jpeg|png|webp)$/i', $imagem)
 ) {
-    header('Location: /Globo-Viagens/public_html/view/destino-criar?erro=validacao');
+    header('Location: /view/destino-criar?erro=validacao');
     exit;
 }
 
@@ -157,5 +157,5 @@ criar_destino([
     'status' => $status,
     'ativo' => $status === 'ativo' ? 1 : 0,
 ]);
-header('Location: /Globo-Viagens/public_html/view/destinos?sucesso=destino');
+header('Location: /view/destinos?sucesso=destino');
 exit;
