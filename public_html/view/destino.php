@@ -33,7 +33,7 @@ function formatar_preco(float $valor): string
 ?>
 <?php  getHeader($destino['nome'], $destino['nome'] . ' em ' . $destino['estado'] . '.'); ?>
 <body class="detail-page-body">
-    <header class="site-header detail-header"><div class="shell header-inner"><a class="brand" href="index" aria-label="Voltar para o inicio"><img src="<?= asset('images/Logo.png') ?>" alt="Globo Viagens"></a><nav class="main-nav" aria-label="Navegacao principal"><a href="index#destinos">Destinos</a><a href="index#relatos">Relatos</a><a href="index#sobre">Sobre</a></nav><a class="button button-dark" href="<?= $whatsapp ?>" target="_blank" rel="noopener">Falar com especialista</a><?php if ($usuarioAutenticado): ?><a class="dashboard-return-button dashboard-site-return" href="dashboard"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a><?php endif; ?></div></header>
+    <header class="site-header detail-header destination-page-header"><div class="shell header-inner"><a class="brand" href="index" aria-label="Voltar para o inicio"><img src="<?= asset('images/Logo.png') ?>" alt="Globo Viagens"></a><nav class="main-nav" aria-label="Navegacao principal"><a href="index#destinos">Destinos</a><a href="index#relatos">Relatos</a><a href="index#sobre">Sobre</a></nav><a class="button button-dark" href="<?= $whatsapp ?>" target="_blank" rel="noopener">Falar com especialista</a><?php if ($usuarioAutenticado): ?><a class="dashboard-return-button dashboard-site-return" href="dashboard"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a><?php endif; ?></div></header>
 
     <main class="detail-page">
         <section class="detail-hero shell">
@@ -48,7 +48,6 @@ function formatar_preco(float $valor): string
                 <div class="detail-price-box">
                     <span>A partir de</span>
                     <strong>R$ <?= formatar_preco((float) $destino['preco']) ?></strong>
-                    <small>por noite</small>
                 </div>
                 <div class="detail-actions">
                     <a class="button button-dark" href="<?= $whatsapp ?>" target="_blank" rel="noopener">Solicitar viagem</a>
@@ -115,17 +114,40 @@ function formatar_preco(float $valor): string
         <div class="shell footer-inner">
             <div>
                 <img src="<?= asset('images/Logo.png') ?>" alt="Globo Viagens" class="footer-logo">
-                <p>Viagens com intencao.<br>Memorias para a vida.</p>
+                <p>Seja <strong>Globo</strong>.</p>
+                <p class="copyright">© <?= date('Y') ?> Globo Viagens</p>
             </div>
             <div class="footer-links">
-                 <a href="index#destinos">Destinos</a>
-                <a href="index#relatos">Relatos</a>
-                <a href="index#sobre">Sobre a Globo</a>
+                <div class="footer-group">
+                    <i class="fa-solid fa-location-arrow"></i>
+                    <a href="#destinos">Destinos</a>
+                </div>
+                <div class="footer-group">
+                    <i class="fa-solid fa-location-arrow"></i>
+                    <a href="#relatos">Relatos</a>
+                </div>
+                <div class="footer-group">
+                    <i class="fa-solid fa-location-arrow"></i>
+                    <a href="#sobre">Sobre a Globo</a>
+                </div>
             </div>
             <div class="footer-contact">
-                <p><i class="fa-solid fa-location-dot"></i>Campo Grande · MS</p>
-                <p><i class="fa-solid fa-location-dot"></i>Rua Ciríaco Maymone · 488</p>
-                <p class="copyright">© <?= date('Y') ?> Globo Viagens</p>
+                <div class="footer-group">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Campo Grande · MS</p>
+                </div>
+                <div class="footer-group">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Rua Ciríaco Maymone · 488</p>
+                </div>
+                <div class="footer-group">
+                    <i class="fa-solid fa-phone"></i>
+                    <p>Telefone: (67) 99202-7942</p>
+                </div>
+                <div class="footer-group">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>Email: contato@globoviagens.com.br</p>
+                </div>
             </div>
         </div>
     </footer>

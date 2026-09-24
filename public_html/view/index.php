@@ -68,7 +68,7 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
         <section class="hero shell">
             <div class="hero-copy">
                 <p class="eyebrow">Viagens que viram memórias inesquecíveis.</p>
-                <h1>O proximo capitulo da sua viagem comeca aqui.</h1>
+                <h1>O próximo capitulo da sua viagem começa aqui.</h1>
                 <p class="hero-text">Destinos especiais, hospedagens escolhidas a dedo e um atendimento próximo para você viajar com conforto.</p>
                 <div class="hero-actions">
                     <a class="button button-dark" href="#destinos">
@@ -83,14 +83,27 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
                 <img src="<?= asset('images/praiaPara.jpg') ?>" alt="Praia">
             </div>
         </section>
-        <section class="trust-strip"><div class="shell trust-inner"><p>Para quem quer mais do que um destino</p><div><i class="fa-solid fa-star" aria-hidden="true"></i> Atendimento humano</div><div><i class="fa-solid fa-star" aria-hidden="true"></i> Curadoria local</div><div><i class="fa-solid fa-star" aria-hidden="true"></i> Experiencias reais</div></div></section>
+        <section class="trust-strip">
+            <div class="shell trust-inner">
+                <p>Para quem quer mais do que um destino</p>
+                <div>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i> Atendimento humano
+                </div>
+                <div>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i> Apoio 24 horas
+                </div>
+                <div>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i> Experiências reais
+                </div>
+            </div>
+        </section>
         <section class="section shell" id="destinos">
             <div class="section-heading">
                 <div>
-                    <p class="eyebrow">Escolha seu proximo sim</p>
+                    <p class="eyebrow">Escolha seu próximo sonho</p>
                     <h2>Destinos para viver,<br>não apenas visitar.</h2>
                 </div>
-                <p class="section-intro">Uma selecao de lugares que combinam conforto, paisagens e aquela vontade gostosa de ficar mais um pouco.</p>
+                <p class="section-intro">Uma seleção de lugares que combinam conforto, paisagens e aquela vontade gostosa de ficar mais um pouco.</p>
             </div>
             <div class="destination-grid">
                 <?php foreach ($destinos as $index => $destino): ?>
@@ -115,7 +128,16 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
                 <a class="button button-light" href="destinos-lista">Ver todos os destinos <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
         </section>
-        <section class="plans-section" id="planos"><div class="shell"><div class="section-heading"><div><p class="eyebrow">Acomodacao do seu jeito</p><h2>Escolha o plano<br>ideal para voce.</h2></div><p class="section-intro">Estruturas pensadas para deixar sua estadia mais confortavel, do essencial ao completo.</p></div><div class="plans-grid">
+        <section class="plans-section" id="planos">
+            <div class="shell">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Acomodação do seu jeito</p>
+                        <h2>Escolha o plano<br>ideal para você.</h2>
+                    </div>
+                        <p class="section-intro">Estruturas pensadas para deixar sua estadia mais confortável, do essencial ao completo.</p>
+                    </div>
+                <div class="plans-grid">
                 <?php foreach ($planos as $index => $plano): ?>
                     <article class="plan-card plan-card-<?= htmlspecialchars($plano['classe']) ?>">
                         <div class="plan-medal">
@@ -123,7 +145,7 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
                         </div>
                         <div class="plan-card-top">
                             <div>
-                                <span class="plan-rank">Acomodacao</span>
+                                <span class="plan-rank">Acomodação</span>
                                 <h3><?= htmlspecialchars($plano['nome']) ?></h3>
                             </div>
                         </div>
@@ -134,7 +156,7 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
                         </ul>
                         <div class="plan-footer">
                             <div>
-                                <small>Diarias<br>a partir de</small>
+                                <small>Acomodações<br>a partir de</small>
                                 <strong><span>R$</span> <?= htmlspecialchars($plano['preco']) ?></strong>
                                 <small>por pessoa</small>
                             </div>
@@ -147,8 +169,11 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
         <section class="testimonials-section" id="relatos">
             <div class="shell">
                 <div class="section-heading section-heading-light">
-                    <div><p class="eyebrow">Relatos que inspiram</p><h2>Quem viaja,<br>conta melhor.</h2></div>
-                    <p class="section-intro">Experiencias reais de quem já viveu um destino com a Globo Viagens.</p>
+                    <div>
+                        <p class="eyebrow">Relatos que inspiram</p>
+                        <h2>Quem viaja,<br>conta melhor.</h2>
+                    </div>
+                    <p class="section-intro">Experiências reais de quem já viveu um destino com a Globo Viagens.</p>
                 </div>
                 <?php if ($videos === []): ?>
                     <div class="testimonials-empty"><i class="fa-solid fa-film"></i><p>Em breve, histórias reais dos nossos viajantes.</p></div>
@@ -180,15 +205,15 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
             </div>
             <div class="about-copy">
                 <p class="eyebrow">Sobre a Globo Viagens</p>
-                <h2>Tem lugar que a gente conhece. E tem lugar que conhece a gente.</h2>
-                <p>Somos uma agencia de viagens de Campo Grande que acredita em roteiros com verdade, cuidado e boas historias para contar.</p>
+                <h2>Tem lugar que a gente conhece. <br>E tem lugar que conhece a gente.</h2>
+                <p>Somos uma agência de viagens de Campo Grande que acredita em roteiros com verdade, cuidado e boas histórias para contar.</p>
                 <a class="text-link" href="<?= $whatsapp ?>" target="_blank" rel="noopener">Vamos conversar <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
         </section>
         <section class="final-cta shell">
-            <p class="eyebrow">Seu proximo destino</p>
-            <h2>O mundo esta logo ali.</h2>
-            <a class="button button-dark" href="<?= $whatsapp ?>" target="_blank" rel="noopener">Comecar a planejar <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+            <p class="eyebrow">Seu próximo destino</p>
+            <h2>O mundo está logo ali.</h2>
+            <a class="button button-dark" href="<?= $whatsapp ?>" target="_blank" rel="noopener">Entre em contato <i class="fa-brands fa-whatsapp fa-lg" aria-hidden="true"></i></a>
         </section>
     </main>
     <footer class="site-footer">
@@ -223,7 +248,7 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
                 </div>
                 <div class="footer-group">
                     <i class="fa-solid fa-phone"></i>
-                    <p>Telefone: (67) 99999-9999</p>
+                    <p>Telefone: (67) 99202-7942</p>
                 </div>
                 <div class="footer-group">
                     <i class="fa-solid fa-envelope"></i>

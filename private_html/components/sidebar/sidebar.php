@@ -10,11 +10,33 @@ function renderSidebar(string $paginaPainel = 'dashboard'): void
 			<a href="dashboard" class="dashboard-brand"><img src="<?= asset('images/Logo.png') ?>" alt="Globo Viagens"></a>
 			<p class="sidebar-kicker">Painel de controle</p>
 			<nav class="sidebar-nav" aria-label="Menu do painel">
-				<a class="sidebar-link <?= $paginaPainel === 'dashboard' ? 'active' : '' ?>" href="dashboard"><i class="fa-solid fa-chart-line"></i><span>Visao geral</span></a>
-				<details class="sidebar-group"><summary class="sidebar-link <?= in_array($paginaPainel, ['destinos', 'novo-destino'], true) ? 'active' : '' ?>"><i class="fa-solid fa-map-location-dot"></i><span>Destinos</span><i class="fa-solid fa-chevron-down sidebar-chevron"></i></summary><div class="sidebar-submenu"><a class="<?= $paginaPainel === 'destinos' ? 'active' : '' ?>" href="destinos"><i class="fa-solid fa-list"></i> Gerenciar destinos</a><a class="<?= $paginaPainel === 'novo-destino' ? 'active' : '' ?>" href="destino-criar"><i class="fa-solid fa-plus"></i> Criar destino</a></div></details>
-				<details class="sidebar-group"><summary class="sidebar-link <?= $paginaPainel === 'planos' ? 'active' : '' ?>"><i class="fa-solid fa-file-contract"></i><span>Planos</span><i class="fa-solid fa-chevron-down sidebar-chevron"></i></summary><div class="sidebar-submenu"><a class="<?= $paginaPainel === 'planos' ? 'active' : '' ?>" href="planos"><i class="fa-solid fa-layer-group"></i> Gerenciar planos</a><a href="planos#novo-plano"><i class="fa-solid fa-circle-plus"></i> Criar plano</a></div></details>
-				<a class="sidebar-link <?= $paginaPainel === 'videos' ? 'active' : '' ?>" href="videos"><i class="fa-solid fa-film"></i><span>Relatos em video</span></a>
-				<a class="sidebar-link <?= $paginaPainel === 'perfil' ? 'active' : '' ?>" href="perfil"><i class="fa-solid fa-user-gear"></i><span>Meu perfil</span></a>
+				<a class="sidebar-link <?= $paginaPainel === 'dashboard' ? 'active' : '' ?>" href="dashboard">
+					<i class="fa-solid fa-chart-line"></i>
+					<span>Visao geral</span>
+				</a>
+				<details class="sidebar-group">
+					<summary class="sidebar-link <?= in_array($paginaPainel, ['destinos', 'novo-destino'], true) ? 'active' : '' ?>">
+						<i class="fa-solid fa-map-location-dot"></i>
+						<span>Destinos</span>
+						<i class="fa-solid fa-chevron-down sidebar-chevron"></i>
+					</summary>
+					<div class="sidebar-submenu">
+						<a class="<?= $paginaPainel === 'destinos' ? 'active' : '' ?>" href="destinos">
+							<i class="fa-solid fa-list"></i> Gerenciar destinos
+						</a>
+						<a class="<?= $paginaPainel === 'novo-destino' ? 'active' : '' ?>" href="destino-criar">
+							<i class="fa-solid fa-plus"></i> Criar destino
+						</a>
+					</div>
+				</details>
+				<a class="sidebar-link <?= $paginaPainel === 'videos' ? 'active' : '' ?>" href="videos">
+					<i class="fa-solid fa-film"></i>
+					<span>Relatos em video</span>
+				</a>
+				<a class="sidebar-link <?= $paginaPainel === 'perfil' ? 'active' : '' ?>" href="perfil">
+					<i class="fa-solid fa-user-gear"></i>
+					<span>Meu perfil</span>
+				</a>
 			</nav>
 		</div>
 		<div class="sidebar-bottom">

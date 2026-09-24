@@ -28,7 +28,7 @@ function salvar_imagem_destino(array $arquivo): string
         return '';
     }
 
-    $diretorio = dirname(__DIR__, 2) . '/images/uploads';
+    $diretorio = dirname(__DIR__) . '/upload/images';
     if (!is_dir($diretorio)) {
         mkdir($diretorio, 0775, true);
     }
@@ -40,7 +40,7 @@ function salvar_imagem_destino(array $arquivo): string
         return '';
     }
 
-    return 'images/uploads/' . $nomeArquivo;
+    return 'upload/images/' . $nomeArquivo;
 }
 
 function salvar_imagens_destino(array $arquivos): array
@@ -84,7 +84,9 @@ if (($_POST['acao'] ?? '') === 'editar') {
     $preco = filter_var($_POST['preco'] ?? null, FILTER_VALIDATE_FLOAT);
     $imagens = isset($_FILES['imagens']) && is_array($_FILES['imagens']) ? salvar_imagens_destino($_FILES['imagens']) : [];
     $imagem = $imagens[0] ?? (string) $destinoAtual['imagem'];
-    $galeria = $imagens !== [] ? implode(',', array_slice($imagens, 1)) : (string) $destinoAtual['galeria'];
+    $galeria = $imagens !== []
+        ? implode(',', array_slice($imagens, 1))
+        : (string) $destinoAtual['galeria'];
 
     if ($nome === '' || strlen($estado) !== 2 || $tipo === '' || $resumo === '' || $descricao === '' || $localizacao === '' || !in_array($status, ['ativo', 'em_uso', 'inativo'], true) || $preco === false || $preco < 0) {
         header('Location: /view/destino-editar?id=' . (int) $id . '&erro=validacao');
