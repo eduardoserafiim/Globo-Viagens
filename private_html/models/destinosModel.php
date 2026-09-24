@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . '/../config/bootstrap.php';
+require_once __DIR__ . '/../config/database.php';
 
 function listar_destinos(bool $apenasAtivos = true): array
 {
@@ -121,16 +121,16 @@ function estatisticas_destinos(): array
     $porDia = $pdo->query(
         "SELECT date(criado_em) AS periodo, COUNT(*) AS total
          FROM destinos
-         WHERE date(criado_em) >= date('now', '-13 days')
-         GROUP BY date(criado_em)
+         WHERE DATE(criado_em) >= DATE_SUB(CURDATE(), INTERVAL 13 DAY)
+         GROUP BY DATE(criado_em)
          ORDER BY periodo"
     )->fetchAll();
 
     $porMes = $pdo->query(
-        "SELECT strftime('%Y-%m', criado_em) AS periodo, COUNT(*) AS total
+        "SELECT DATE_FORMAT(criado_em, '%Y-%m') AS periodo, COUNT(*) AS total
          FROM destinos
-         WHERE date(criado_em) >= date('now', '-5 months', 'start of month')
-         GROUP BY strftime('%Y-%m', criado_em)
+         WHERE criado_em >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 5 MONTH), '%Y-%m-01')
+         GROUP BY DATE_FORMAT(criado_em, '%Y-%m')
          ORDER BY periodo"
     )->fetchAll();
 

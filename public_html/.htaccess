@@ -1,7 +1,13 @@
 Options -MultiViews
 RewriteEngine On
 
-# Mantém rotas amigáveis sem extensão, sem tentar redirecionar para caminhos absolutos do sistema.
+RewriteCond %{THE_REQUEST} \s/+[^\s?]*\.php(?:[\s?]|$) [NC]
+RewriteRule ^(?:view/)?([A-Za-z0-9_-]+)\.php$ view/$1 [R=301,L,NE]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([A-Za-z0-9_-]+)$ $1.php [L,END]
+RewriteRule ^view/([A-Za-z0-9_-]+)$ view/$1.php [L,END]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([A-Za-z0-9_-]+)$ view/$1.php [L,END]

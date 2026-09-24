@@ -5,13 +5,13 @@ require_once __DIR__ . '/../models/videosModel.php';
 exigir_autenticacao();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !validar_csrf($_POST['csrf_token'] ?? null)) {
-    header('Location: ../../public_html/videos.php?erro=csrf');
+    header('Location: /Globo-Viagens/public_html/view/videos?erro=csrf');
     exit;
 }
 
 if (($_POST['acao'] ?? '') === 'excluir') {
     excluir_video_relato((int) ($_POST['id'] ?? 0));
-    header('Location: ../../public_html/videos.php?sucesso=excluido');
+    header('Location: /Globo-Viagens/public_html/view/videos?sucesso=excluido');
     exit;
 }
 
@@ -50,7 +50,7 @@ $destino = trim((string) ($_POST['destino'] ?? ''));
 $descricao = trim((string) ($_POST['descricao'] ?? ''));
 
 if ($video === '' || $titulo === '' || $autor === '') {
-    header('Location: ../../public_html/videos.php?erro=validacao');
+    header('Location: /Globo-Viagens/public_html/view/videos?erro=validacao');
     exit;
 }
 
@@ -61,5 +61,5 @@ criar_video_relato([
     'descricao' => $descricao,
     'url' => $video,
 ]);
-header('Location: ../../public_html/videos.php?sucesso=criado');
+header('Location: /Globo-Viagens/public_html/view/videos?sucesso=criado');
 exit;

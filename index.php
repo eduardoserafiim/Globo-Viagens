@@ -1,3 +1,3 @@
 <?php
-header('Location: public_html/index', true, 302);
+header('Location: public_html/view/', true, 302);
 exit;
