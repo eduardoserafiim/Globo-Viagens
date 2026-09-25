@@ -15,19 +15,19 @@ $whatsapp = 'https://api.whatsapp.com/send?phone=67992027942&text=Ola%2C%20quero
 $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
 ?>
 <?php  getHeader('Início', 'Hospedagens e destinos para criar viagens do seu jeito.'); ?>
-<body>
+<body class="home-page">
     <header class="site-header">
         <div class="shell header-inner">
             <a class="brand" href="index" aria-label="Globo Viagens, inicio">
                 <img src="<?= asset('images/Logo.png') ?>" alt="Globo Viagens"></a>
                 <nav class="main-nav" aria-label="Navegacao principal">
                      <div>
-                        <i class="fa-solid fa-paper-plane"></i>
+                        <i class="fa-solid fa-plane"></i>
                         <a href="#destinos">Destinos</a>
                     </div>
                     <div>
                         <i class="fa-solid fa-web-awesome"></i>
-                        <a href="#planos">Planos</a>
+                        <a href="#acomodacoes">Acomodações</a>
                     </div>
                     <div>
                         <i class="fa-solid fa-comments"></i>
@@ -47,12 +47,12 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
         </div>
         <div class="mobile-nav" aria-hidden="true">
             <div>
-                <i class="fa-solid fa-paper-plane"></i>
+                <i class="fa-solid fa-plane"></i>
                 <a href="#destinos">Destinos</a>
             </div>
             <div>
                 <i class="fa-solid fa-web-awesome"></i>
-                <a href="#planos">Planos</a>
+                <a href="#acomodacoes">Acomodações</a>
             </div>
             <div>
                 <i class="fa-solid fa-comments"></i>
@@ -128,12 +128,12 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
                 <a class="button button-light" href="destinos-lista">Ver todos os destinos <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </div>
         </section>
-        <section class="plans-section" id="planos">
+        <section class="plans-section" id="acomodacoes">
             <div class="shell">
                 <div class="section-heading">
                     <div>
                         <p class="eyebrow">Acomodação do seu jeito</p>
-                        <h2>Escolha o plano<br>ideal para você.</h2>
+                        <h2>Escolha a acomodação<br>ideal para você.</h2>
                     </div>
                         <p class="section-intro">Estruturas pensadas para deixar sua estadia mais confortável, do essencial ao completo.</p>
                     </div>
@@ -211,6 +211,7 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
             </div>
         </section>
         <section class="final-cta shell">
+            <div class="final-cta-flight" aria-hidden="true"><i class="fa-solid fa-plane"></i></div>
             <p class="eyebrow">Seu próximo destino</p>
             <h2>O mundo está logo ali.</h2>
             <a class="button button-dark" href="<?= $whatsapp ?>" target="_blank" rel="noopener">Entre em contato <i class="fa-brands fa-whatsapp fa-lg" aria-hidden="true"></i></a>
@@ -221,12 +222,19 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
             <div>
                 <img src="<?= asset('images/Logo.png') ?>" alt="Globo Viagens" class="footer-logo">
                 <p>Seja <strong>Globo</strong>.</p>
-                <p class="copyright">© <?= date('Y') ?> Globo Viagens</p>
+                <p class="copyright">© <?= date('Y') ?> GLOBO VIAGENS RESORTS E TURISMO LTDA</p>
+                <img src="<?= asset('images/SistemasS.png') ?>" alt="Sistemas S" class="footer-logo">
+                <p>Tecnologia que cuida.</p>
+                <p class="copyright">© <?= date('Y') ?> SISTEMAS S</p>
             </div>
             <div class="footer-links">
                 <div class="footer-group">
                     <i class="fa-solid fa-location-arrow"></i>
                     <a href="#destinos">Destinos</a>
+                </div>
+                <div class="footer-group">
+                    <i class="fa-solid fa-location-arrow"></i>
+                    <a href="#acomodacoes">Acomodações</a>
                 </div>
                 <div class="footer-group">
                     <i class="fa-solid fa-location-arrow"></i>
@@ -264,6 +272,38 @@ $preco = static fn (float $valor): string => number_format($valor, 2, ',', '.');
     <script src="<?= asset('javascript/menuMobile.js') ?>"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const elementosRevelados = document.querySelectorAll(
+                '.trust-strip, main > section:not(.hero), ' +
+                'main > section:not(.hero) .section-heading, ' +
+                'main > section:not(.hero) .destination-card, ' +
+                'main > section:not(.hero) .plan-card, ' +
+                'main > section:not(.hero) .testimonials-carousel, ' +
+                '#sobre .about-image, #sobre .about-copy, .final-cta, ' +
+                '.site-footer .footer-inner > *'
+            );
+            document.body.classList.add('has-scroll-reveal');
+            elementosRevelados.forEach((elemento, index) => {
+                elemento.classList.add('scroll-reveal');
+                elemento.style.setProperty('--reveal-order', index);
+            });
+            document.querySelector('#sobre .about-image')?.classList.add('reveal-left');
+            document.querySelector('#sobre .about-copy')?.classList.add('reveal-right');
+            document.querySelectorAll('.destination-card, .plan-card').forEach((elemento) => elemento.classList.add('reveal-scale'));
+
+            if (!window.IntersectionObserver) {
+                elementosRevelados.forEach((elemento) => elemento.classList.add('is-visible'));
+            } else {
+                const observador = new IntersectionObserver((entradas, observer) => {
+                    entradas.forEach((entrada) => {
+                        if (!entrada.isIntersecting) return;
+                        entrada.target.classList.add('is-visible');
+                        observer.unobserve(entrada.target);
+                    });
+                }, { threshold: .15, rootMargin: '0px 0px -40px' });
+
+                elementosRevelados.forEach((elemento) => observador.observe(elemento));
+            }
+
             document.querySelectorAll('.destination-card').forEach((card) => {
                 card.addEventListener('click', (event) => {
                     if (event.target.closest('a')) {

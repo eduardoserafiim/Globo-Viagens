@@ -25,7 +25,7 @@ if (autenticado()) {
             </form>
             <a class="back-link" href="index">← Voltar para o site</a>
         </div>
-        <div class="login-art"><img src="<?= asset('images/Florianopolis-SC/IMG-20250523-WA0018.jpg') ?>" alt="Destino de viagem"></div>
+        <div class="login-art"><img src="<?= asset('images/loginPraia.jpg') ?>" alt="Destino de viagem"></div>
     </main>
 </body>
 </html>

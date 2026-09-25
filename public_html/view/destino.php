@@ -101,21 +101,43 @@ function formatar_preco(float $valor): string
                 </div>
             </div>
             <div class="gallery-grid">
-                <?php foreach ($galeria as $imagem): ?>
-                    <figure class="gallery-item">
+                <?php foreach ($galeria as $indice => $imagem): ?>
+                    <button class="gallery-item" type="button" data-gallery-index="<?= $indice ?>" aria-label="Ampliar foto <?= $indice + 1 ?> de <?= count($galeria) ?>">
                         <img src="<?= asset($imagem) ?>" alt="Foto do destino <?= htmlspecialchars($destino['nome']) ?>">
-                    </figure>
+                    </button>
                 <?php endforeach; ?>
             </div>
         </section>
     </main>
+
+    <div class="gallery-modal" data-gallery-modal aria-hidden="true">
+        <div class="gallery-modal-backdrop" data-gallery-close></div>
+        <div class="gallery-modal-dialog" role="dialog" aria-modal="true" aria-label="Galeria de fotos de <?= htmlspecialchars($destino['nome']) ?>">
+            <button class="gallery-modal-close" type="button" data-gallery-close aria-label="Fechar galeria"><i class="fa-solid fa-xmark"></i></button>
+            <button class="gallery-modal-arrow gallery-modal-prev" type="button" data-gallery-prev aria-label="Foto anterior"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="gallery-modal-main">
+                <img data-gallery-image src="<?= asset($galeria[0]) ?>" alt="Foto do destino <?= htmlspecialchars($destino['nome']) ?>">
+            </div>
+            <button class="gallery-modal-arrow gallery-modal-next" type="button" data-gallery-next aria-label="Próxima foto"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="gallery-modal-thumbs" aria-label="Miniaturas da galeria">
+                <?php foreach ($galeria as $indice => $imagem): ?>
+                    <button class="gallery-modal-thumb <?= $indice === 0 ? 'active' : '' ?>" type="button" data-gallery-thumb="<?= $indice ?>" aria-label="Ver foto <?= $indice + 1 ?>">
+                        <img src="<?= asset($imagem) ?>" alt="">
+                    </button>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="shell footer-inner">
             <div>
                 <img src="<?= asset('images/Logo.png') ?>" alt="Globo Viagens" class="footer-logo">
                 <p>Seja <strong>Globo</strong>.</p>
-                <p class="copyright">© <?= date('Y') ?> Globo Viagens</p>
+                <p class="copyright">© <?= date('Y') ?> GLOBO VIAGENS RESORTS E TURISMO LTDA</p>
+                <img src="<?= asset('images/SistemasS.png') ?>" alt="Sistemas S" class="footer-logo">
+                <p>Tecnologia que cuida.</p>
+                <p class="copyright">© <?= date('Y') ?> SISTEMAS S</p>
             </div>
             <div class="footer-links">
                 <div class="footer-group">
@@ -151,5 +173,51 @@ function formatar_preco(float $valor): string
             </div>
         </div>
     </footer>
+    <script>
+        (() => {
+            const modal = document.querySelector('[data-gallery-modal]');
+            const items = Array.from(document.querySelectorAll('[data-gallery-index]'));
+            if (!modal || items.length === 0) return;
+
+            const image = modal.querySelector('[data-gallery-image]');
+            const thumbs = Array.from(modal.querySelectorAll('[data-gallery-thumb]'));
+            let indiceAtual = 0;
+
+            const mostrarImagem = (indice) => {
+                indiceAtual = (indice + items.length) % items.length;
+                const item = items[indiceAtual];
+                const itemImage = item.querySelector('img');
+                image.src = itemImage.src;
+                image.alt = itemImage.alt;
+                thumbs.forEach((thumb, indiceThumb) => thumb.classList.toggle('active', indiceThumb === indiceAtual));
+            };
+
+            const abrirModal = (indice) => {
+                mostrarImagem(indice);
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('gallery-modal-open');
+                modal.querySelector('[data-gallery-close]').focus();
+            };
+
+            const fecharModal = () => {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('gallery-modal-open');
+            };
+
+            items.forEach((item) => item.addEventListener('click', () => abrirModal(Number(item.dataset.galleryIndex))));
+            thumbs.forEach((thumb) => thumb.addEventListener('click', () => mostrarImagem(Number(thumb.dataset.galleryThumb))));
+            modal.querySelector('[data-gallery-prev]').addEventListener('click', () => mostrarImagem(indiceAtual - 1));
+            modal.querySelector('[data-gallery-next]').addEventListener('click', () => mostrarImagem(indiceAtual + 1));
+            modal.querySelectorAll('[data-gallery-close]').forEach((elemento) => elemento.addEventListener('click', fecharModal));
+            document.addEventListener('keydown', (event) => {
+                if (!modal.classList.contains('is-open')) return;
+                if (event.key === 'Escape') fecharModal();
+                if (event.key === 'ArrowLeft') mostrarImagem(indiceAtual - 1);
+                if (event.key === 'ArrowRight') mostrarImagem(indiceAtual + 1);
+            });
+        })();
+    </script>
 </body>
 </html>

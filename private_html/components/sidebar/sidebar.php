@@ -9,6 +9,7 @@ function renderSidebar(string $paginaPainel = 'dashboard'): void
 		<div class="sidebar-top">
 			<a href="dashboard" class="dashboard-brand"><img src="<?= asset('images/Logo.png') ?>" alt="Globo Viagens"></a>
 			<p class="sidebar-kicker">Painel de controle</p>
+			<div class="sidebar-flight" aria-hidden="true"><i class="fa-solid fa-plane"></i></div>
 			<nav class="sidebar-nav" aria-label="Menu do painel">
 				<a class="sidebar-link <?= $paginaPainel === 'dashboard' ? 'active' : '' ?>" href="dashboard">
 					<i class="fa-solid fa-chart-line"></i>
@@ -40,7 +41,14 @@ function renderSidebar(string $paginaPainel = 'dashboard'): void
 			</nav>
 		</div>
 		<div class="sidebar-bottom">
-			<div class="sidebar-user-card"><img src="<?= asset($perfil['foto']) ?>" alt="Foto de <?= htmlspecialchars($perfil['nome']) ?>"><div class="sidebar-user-copy"><strong><?= htmlspecialchars($perfil['nome']) ?></strong><small><?= htmlspecialchars($perfil['email']) ?></small></div><a class="sidebar-user-edit" href="perfil" aria-label="Editar perfil" title="Editar perfil"><i class="fa-solid fa-pen"></i></a></div>
+			<div class="sidebar-user-card">
+				<img src="<?= asset($perfil['foto']) ?>" alt="Foto de <?= htmlspecialchars($perfil['nome']) ?>">
+				<div class="sidebar-user-copy">
+					<strong><?= htmlspecialchars($perfil['nome']) ?></strong>
+					<small><?= htmlspecialchars($perfil['email']) ?></small>
+				</div>
+				<a class="sidebar-user-edit" href="perfil" aria-label="Editar perfil" title="Editar perfil"><i class="fa-solid fa-pen"></i></a>
+			</div>
 			<a class="sidebar-link sidebar-link-muted" href="index"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Ver site</span></a>
 			<a class="sidebar-link sidebar-link-muted" href="dashboard?sair=1"><i class="fa-solid fa-right-from-bracket"></i><span>Sair</span></a>
 		</div>
